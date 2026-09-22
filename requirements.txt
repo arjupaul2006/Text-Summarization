@@ -1,0 +1,8 @@
+transformers
+transformers[sentencepiece]
+setuptools
+
+fastapi
+uvicorn
+
+-e .
