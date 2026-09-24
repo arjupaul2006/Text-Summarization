@@ -28,7 +28,7 @@ list_of_files = [
 
 
 for filepath in list_of_files:
-    filepath = Path(filepath)
+    filepath = Path(filepath)   # convert the file path to the actual filepath style in the system
     fileDir, filename = os.path.split(filepath)
 
     # create directory
@@ -39,3 +39,14 @@ for filepath in list_of_files:
     if (not os.path.exists(filepath)) or (os.path.getsize(filepath) == 0):
         with open(filepath, 'w') as f:
             pass
+
+
+# Workflow:
+# Update config.yaml
+# Update params.yaml
+# Update entity
+# Update the configuration manager in src config
+# update the conponents
+# update the pipeline
+# update the main.py
+# update the app.py

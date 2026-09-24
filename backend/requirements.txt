@@ -1,8 +1,12 @@
 transformers
 transformers[sentencepiece]
 setuptools
+pyaml
+python-box
+ensure
 
 fastapi
 uvicorn
+ipykernel
 
 -e .
