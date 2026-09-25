@@ -4,6 +4,8 @@ setuptools
 pyaml
 python-box
 ensure
+python-multipart
+torch
 
 fastapi
 uvicorn
