@@ -12,7 +12,7 @@ def news_summary(input, model, tokenizer) -> str:
             summarize_ids = model.generate(
                 input["input_ids"],
                 attention_mask=input["attention_mask"],
-                max_length=100,
+                max_length=120,
                 min_length=35,
                 num_beams=6,
                 length_penalty=1.0,
@@ -42,14 +42,14 @@ def bills_summary(input, model, tokenizer) -> str:
         # Generate summary
         with torch.no_grad():
             summary_ids = model.generate(
-                input_ids=input["input_ids"],
-                attention_mask=input["attention_mask"],
-                global_attention_mask=global_attention_mask,
-                num_beams=5,
-                max_length=512,
-                min_length=80,
-                early_stopping=True
-            )
+            input_ids=input["input_ids"],
+            attention_mask=input["attention_mask"],
+            global_attention_mask=global_attention_mask,
+            num_beams=5,
+            max_length=512,
+            min_length=80,
+            early_stopping=True
+        )
 
         # Decode summary
         summary = tokenizer.decode(
@@ -71,9 +71,9 @@ def medical_summary(input, model, tokenizer) -> str:
             summary_ids = model.generate(
                 input_ids=input["input_ids"],
                 attention_mask=input["attention_mask"],
-                num_beams=5,
-                max_length=300,
-                min_length=40,
+                num_beams=6,
+                max_length=256,
+                min_length=80,
                 length_penalty=1.0,
                 no_repeat_ngram_size=3,
                 early_stopping=True
