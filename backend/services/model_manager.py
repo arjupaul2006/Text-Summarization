@@ -56,21 +56,21 @@ class ModelManager:
 
             # ---------------- BILLS ----------------
 
-            bills_path = "Anurag33Gaikwad/legal-led-billsum-summarization"
+            # bills_path = "Anurag33Gaikwad/legal-led-billsum-summarization"
 
-            self.tokenizers["bills"] = AutoTokenizer.from_pretrained(
-                bills_path
-            )
+            # self.tokenizers["bills"] = AutoTokenizer.from_pretrained(
+            #     bills_path
+            # )
 
-            self.models["bills"] = LEDForConditionalGeneration.from_pretrained(
-                bills_path
-            )
+            # self.models["bills"] = LEDForConditionalGeneration.from_pretrained(
+            #     bills_path
+            # )
 
-            self.models["bills"].eval()
+            # self.models["bills"].eval()
 
-            logging.info("Bills model loaded.")
+            # logging.info("Bills model loaded.")
 
-            logging.info("All models loaded successfully.")
+            # logging.info("All models loaded successfully.")
 
         except Exception as e:
 

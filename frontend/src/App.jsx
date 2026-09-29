@@ -5,12 +5,14 @@ import axios from "axios";
 const contentTypes = [
   { name: "News Article", note: "Headlines, reports, and updates", icon: "01" },
   { name: "Medical Paper", note: "Research and clinical findings", icon: "02" },
-  {
-    name: "Bills and Acts",
-    note: "Legislation and legal documents",
-    icon: "03",
-  },
+  // {
+  //   name: "Bills and Acts",
+  //   note: "Legislation and legal documents",
+  //   icon: "03",
+  // },
 ];
+
+const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:8000";
 
 function App() {
   const [contentType, setContentType] = useState(contentTypes[0].name);
@@ -36,7 +38,7 @@ function App() {
       formData.append("text", text);
       formData.append("type", contentType);
       const response = await axios.post(
-        "http://localhost:8000/api/summarize",
+        `${backendUrl}/api/summarize`,
         formData,
       );
       const data = await response.data;
