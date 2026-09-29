@@ -1,41 +1,81 @@
 from logger import logging
 from exception import CustomeException
+
 import sys
-from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, LEDForConditionalGeneration
-from pathlib import Path
+from transformers import (
+    AutoTokenizer,
+    AutoModelForSeq2SeqLM,
+    LEDForConditionalGeneration
+)
 
-BASE_DIR = Path(__file__).resolve().parents[1]
 
-def load_model_and_tokenizer(model_name: str):
-    try:
-        if model_name == "news":
-            # model_path = 'facebook/bart-large-cnn'
-            model_path = BASE_DIR / 'models' / 'news_model'
+class ModelManager:
 
-            tokenizer = AutoTokenizer.from_pretrained(model_path)
-            model = AutoModelForSeq2SeqLM.from_pretrained(model_path)
+    def __init__(self):
 
-        elif model_name == "medical":
-            # model_path = 'google/long-t5-tglobal-base'
-            model_path = BASE_DIR / 'models' / 'medical_model'
+        self.models = {}
+        self.tokenizers = {}
 
-            tokenizer = AutoTokenizer.from_pretrained(model_path)
-            model = AutoModelForSeq2SeqLM.from_pretrained(model_path)
+    def load_all_models(self):
 
-        elif model_name == "bills":
-            # model_path = 'Anurag33Gaikwad/legal-led-billsum-summarization'
+        try:
 
-            model_path = BASE_DIR / 'models' / 'bills_model'
+            logging.info("Loading all models...")
 
-            tokenizer = AutoTokenizer.from_pretrained(model_path)
-            model = LEDForConditionalGeneration.from_pretrained(model_path)
+            # ---------------- NEWS ----------------
 
-        else:
-            raise ValueError("Invalid model name provided.")
+            news_path = "facebook/bart-large-cnn"
 
-        logging.info(f"Model and tokenizer for '{model_name}' loaded successfully.")
+            self.tokenizers["news"] = AutoTokenizer.from_pretrained(
+                news_path
+            )
 
-        return tokenizer, model
+            self.models["news"] = AutoModelForSeq2SeqLM.from_pretrained(
+                news_path
+            )
 
-    except Exception as e:
-        raise CustomeException(e, sys)
+            self.models["news"].eval()
+
+            logging.info("News model loaded.")
+
+            # ---------------- MEDICAL ----------------
+
+            medical_path = "google/long-t5-tglobal-base"
+
+            self.tokenizers["medical"] = AutoTokenizer.from_pretrained(
+                medical_path
+            )
+
+            self.models["medical"] = AutoModelForSeq2SeqLM.from_pretrained(
+                medical_path
+            )
+
+            self.models["medical"].eval()
+
+            logging.info("Medical model loaded.")
+
+            # ---------------- BILLS ----------------
+
+            bills_path = "Anurag33Gaikwad/legal-led-billsum-summarization"
+
+            self.tokenizers["bills"] = AutoTokenizer.from_pretrained(
+                bills_path
+            )
+
+            self.models["bills"] = LEDForConditionalGeneration.from_pretrained(
+                bills_path
+            )
+
+            self.models["bills"].eval()
+
+            logging.info("Bills model loaded.")
+
+            logging.info("All models loaded successfully.")
+
+        except Exception as e:
+
+            raise CustomeException(e, sys)
+
+    def get_model(self, model_name):
+
+        return self.tokenizers[model_name], self.models[model_name]
