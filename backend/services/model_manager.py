@@ -40,37 +40,37 @@ class ModelManager:
 
             # ---------------- MEDICAL ----------------
 
-            # medical_path = "google/long-t5-tglobal-base"
+            medical_path = "google/long-t5-tglobal-base"
 
-            # self.tokenizers["medical"] = AutoTokenizer.from_pretrained(
-            #     medical_path
-            # )
+            self.tokenizers["medical"] = AutoTokenizer.from_pretrained(
+                medical_path
+            )
 
-            # self.models["medical"] = AutoModelForSeq2SeqLM.from_pretrained(
-            #     medical_path
-            # )
+            self.models["medical"] = AutoModelForSeq2SeqLM.from_pretrained(
+                medical_path
+            )
 
-            # self.models["medical"].eval()
+            self.models["medical"].eval()
 
-            # logging.info("Medical model loaded.")
+            logging.info("Medical model loaded.")
 
             # ---------------- BILLS ----------------
 
-            # bills_path = "Anurag33Gaikwad/legal-led-billsum-summarization"
+            bills_path = "Anurag33Gaikwad/legal-led-billsum-summarization"
 
-            # self.tokenizers["bills"] = AutoTokenizer.from_pretrained(
-            #     bills_path
-            # )
+            self.tokenizers["bills"] = AutoTokenizer.from_pretrained(
+                bills_path
+            )
 
-            # self.models["bills"] = LEDForConditionalGeneration.from_pretrained(
-            #     bills_path
-            # )
+            self.models["bills"] = LEDForConditionalGeneration.from_pretrained(
+                bills_path
+            )
 
-            # self.models["bills"].eval()
+            self.models["bills"].eval()
 
-            # logging.info("Bills model loaded.")
+            logging.info("Bills model loaded.")
 
-            # logging.info("All models loaded successfully.")
+            logging.info("All models loaded successfully.")
 
         except Exception as e:
 

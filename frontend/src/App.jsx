@@ -3,13 +3,13 @@ import "./App.css";
 import axios from "axios";
 
 const contentTypes = [
-  { name: "News Article", note: "Headlines, reports, and updates", icon: "01" },
+  { name: "News Article", note: "Headlines, reports, and updates", icon: "01", ui_name: "News & Articles" },
   { name: "Medical Paper", note: "Research and clinical findings", icon: "02" },
-  // {
-  //   name: "Bills and Acts",
-  //   note: "Legislation and legal documents",
-  //   icon: "03",
-  // },
+  {
+    name: "Bills and Acts",
+    note: "Legislation and legal documents",
+    icon: "03",
+  },
 ];
 
 const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:8000";
@@ -123,7 +123,7 @@ function App() {
                   <span className="mb-5 block font-mono text-xs text-[#f26745]">
                     {type.icon}
                   </span>
-                  <strong className="block text-sm">{type.name}</strong>
+                  <strong className="block text-sm">{type.ui_name}</strong>
                   <span
                     className={`mt-1 block text-xs ${contentType === type.name ? "text-white/55" : "text-[#18302a]/50"}`}
                   >

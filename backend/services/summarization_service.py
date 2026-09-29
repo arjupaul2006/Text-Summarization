@@ -36,9 +36,9 @@ def summarize_text(
 
             model_name = "medical"
 
-        # elif type == "Bills and Acts":
+        elif type == "Bills and Acts":
 
-        #     model_name = "bills"
+            model_name = "bills"
 
         else:
 
