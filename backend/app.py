@@ -1,10 +1,16 @@
 from contextlib import asynccontextmanager
+from dotenv import load_dotenv
+import os
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from services.model_manager import ModelManager
 from routes.summarization import router
+
+load_dotenv()
+
+FRONTEND_URL = os.getenv('FRONTEND_URL', 'http://localhost:5173')
 
 
 # --------------------------------------------------

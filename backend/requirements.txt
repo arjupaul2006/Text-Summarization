@@ -10,5 +10,6 @@ torch
 fastapi
 uvicorn
 ipykernel
+python-dotenv
 
 -e .
